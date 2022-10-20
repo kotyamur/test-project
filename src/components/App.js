@@ -16,6 +16,17 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    const prevContacts = prevState.contacts;
+    const nextContacts = this.state.contacts;
+
+    if (nextContacts !== prevContacts) {
+      console.log('add contact');
+      console.log(nextContacts);
+      localStorage.setItem('contacts', JSON.stringify(nextContacts));
+    }
+  }
+
   addContact = newContact => {
     const { name, number } = newContact;
     if (this.checkContactsName(name)) {
