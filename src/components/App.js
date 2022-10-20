@@ -5,6 +5,8 @@ import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList ';
 import { Container, Title, SecondTitle } from './App.styled';
 
+const STORAGE_FORM_DATA = 'contacts';
+
 export class App extends Component {
   state = {
     contacts: [
@@ -16,14 +18,26 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    console.log('App componentDidMount');
+
+    const savedContacts = localStorage.getItem(STORAGE_FORM_DATA);
+    const parsedContacts = JSON.parse(savedContacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
+    console.log('App componentDidUpdate');
     const prevContacts = prevState.contacts;
     const nextContacts = this.state.contacts;
 
     if (nextContacts !== prevContacts) {
       console.log('add contact');
       console.log(nextContacts);
-      localStorage.setItem('contacts', JSON.stringify(nextContacts));
+      localStorage.setItem(STORAGE_FORM_DATA, JSON.stringify(nextContacts));
     }
   }
 
