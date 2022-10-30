@@ -23,7 +23,7 @@ export const ContactForm = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    onSubmit({ name, number });
+    onSubmit(name, number);
     reset();
   };
 

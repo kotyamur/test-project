@@ -4,22 +4,18 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList ';
 import { Container, Title, SecondTitle } from './App.styled';
-
-const STORAGE_FORM_DATA = 'contacts';
-const parsedDataFromLS = (key, initialValue = []) => {
-  try {
-    return JSON.parse(localStorage.getItem(key)) ?? initialValue;
-  } catch (error) {
-    return initialValue;
-  }
-};
+import {
+  checkContactsName,
+  getDataFromLocalStorage,
+  setDataToLocalStorage,
+} from './utils';
 
 export const App = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    const savedContacts = parsedDataFromLS(STORAGE_FORM_DATA);
+    const savedContacts = getDataFromLocalStorage();
     if (savedContacts.length === 0) {
       return;
     }
@@ -27,20 +23,15 @@ export const App = () => {
   }, []);
 
   useEffect(() => {
-    // if (contacts.length === 0) {
-    //   return
-    // }
-    localStorage.setItem(STORAGE_FORM_DATA, JSON.stringify(contacts));
+    setDataToLocalStorage(contacts);
   }, [contacts]);
 
-  const checkContactsName = name => {
-    const normalizedName = name.toLowerCase();
-    return contacts.some(({ name }) => normalizedName === name.toLowerCase());
-  };
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
-  const addContact = newContact => {
-    const { name, number } = newContact;
-    if (checkContactsName(name)) {
+  const handleAddContact = (name, number) => {
+    if (checkContactsName(contacts, name)) {
       alert(`${name} is already in contacts.`);
       return;
     }
@@ -54,19 +45,11 @@ export const App = () => {
     setContacts(prevContacts => [contact, ...prevContacts]);
   };
 
-  const changeFilter = e => {
+  const handleChangeFilter = e => {
     setFilter(e.currentTarget.value);
   };
 
-  const getContactsByName = () => {
-    const normalizedFilter = filter.toLowerCase();
-
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
-
-  const deleteContact = contactId => {
+  const handleDeleteContact = contactId => {
     setContacts(prevContacts =>
       prevContacts.filter(contact => contact.id !== contactId)
     );
@@ -75,15 +58,15 @@ export const App = () => {
   return (
     <Container>
       <Title>Phonebook</Title>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm onSubmit={handleAddContact} />
 
       <SecondTitle>Contacts</SecondTitle>
       {contacts.length > 0 && (
         <>
-          <Filter value={filter} onChange={changeFilter} />
+          <Filter value={filter} onChange={handleChangeFilter} />
           <ContactList
-            contacts={getContactsByName()}
-            onDeleteContact={deleteContact}
+            contacts={filteredContacts}
+            onDeleteContact={handleDeleteContact}
           />
         </>
       )}
