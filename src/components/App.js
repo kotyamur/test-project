@@ -11,16 +11,8 @@ import {
 } from './utils';
 
 export const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(() => getDataFromLocalStorage());
   const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    const savedContacts = getDataFromLocalStorage();
-    if (savedContacts.length === 0) {
-      return;
-    }
-    setContacts(savedContacts);
-  }, []);
 
   useEffect(() => {
     setDataToLocalStorage(contacts);
