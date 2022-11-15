@@ -48,7 +48,7 @@ export const App = () => {
   //   setContacts(prevContacts =>
   //     prevContacts.filter(contact => contact.id !== contactId)
   //   );
-  // };
+  // }; 
 
   return (
     <Container>
