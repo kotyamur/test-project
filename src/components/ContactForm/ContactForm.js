@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
 import { Container, SubmitButton } from './ContactForm.styled';
 import { getContacts } from 'redux/selectors';
 import { checkContactsName } from 'utils';
+import { addContact } from 'redux/actions';
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const contacts = useSelector(getContacts);
+
+  const dispatch = useDispatch();
 
   const changeInput = e => {
     const { name, value } = e.currentTarget;
@@ -32,8 +36,7 @@ export const ContactForm = ({ onSubmit }) => {
       alert(`${name} is already in contacts.`);
       return;
     }
-
-    onSubmit(name, number);
+    dispatch(addContact(name, number));
     reset();
   };
 
