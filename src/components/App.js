@@ -37,12 +37,6 @@ export const App = () => {
   //     return;
   //   }
 
-  //   const contact = {
-  //     id: nanoid(),
-  //     name,
-  //     number,
-  //   };
-
   //   setContacts(prevContacts => [contact, ...prevContacts]);
   // };
 
