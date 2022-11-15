@@ -27,29 +27,6 @@ export const App = () => {
   //   setDataToLocalStorage(contacts);
   // }, [contacts]);
 
-  // const filteredContacts = contacts.filter(contact =>
-  //   contact.name.toLowerCase().includes(filter.toLowerCase())
-  // );
-
-  // const handleAddContact = (name, number) => {
-  //   if (checkContactsName(contacts, name)) {
-  //     alert(`${name} is already in contacts.`);
-  //     return;
-  //   }
-
-  //   setContacts(prevContacts => [contact, ...prevContacts]);
-  // };
-
-  // const handleChangeFilter = e => {
-  //   setFilter(e.currentTarget.value);
-  // };
-
-  // const handleDeleteContact = contactId => {
-  //   setContacts(prevContacts =>
-  //     prevContacts.filter(contact => contact.id !== contactId)
-  //   );
-  // };
-
   return (
     <Container>
       <Title>Phonebook</Title>
