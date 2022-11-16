@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-// import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { Container, SubmitButton } from './ContactForm.styled';
 import { getContacts } from 'redux/selectors';
 import { checkContactsName } from 'utils';
@@ -75,7 +73,3 @@ export const ContactForm = () => {
     </Container>
   );
 };
-
-// ContactForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// };

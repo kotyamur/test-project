@@ -5,12 +5,11 @@ import { Container, DeleteButton } from './ContactItem.styled';
 
 export const ContactItem = ({ name, number, id }) => {
   const dispatch = useDispatch();
+
   const handleDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
-    // setContacts(prevContacts =>
-    //   prevContacts.filter(contact => contact.id !== contactId)
-    // );
   };
+  
   return (
     <Container>
       <p>

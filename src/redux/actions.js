@@ -23,3 +23,10 @@ export const setFilter = value => {
     payload: value,
   };
 };
+
+export const setContactFromLocalStorage = contacts => {
+  return {
+    type: 'contacts/setContactFromLocalStorage',
+    payload: contacts,
+  };
+};
