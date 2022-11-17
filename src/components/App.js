@@ -6,7 +6,8 @@ import { ContactList } from './ContactList/ContactList ';
 import { Container, Title, SecondTitle } from './App.styled';
 import { getDataFromLocalStorage, setDataToLocalStorage } from '../utils';
 import { getContacts } from 'redux/selectors';
-import { setContactFromLocalStorage } from 'redux/actions';
+// import { setContactFromLocalStorage } from 'redux/actions';
+import { setContactFromLocalStorage } from '../redux/contactsSlice';
 
 export const App = () => {
   const contacts = useSelector(getContacts);

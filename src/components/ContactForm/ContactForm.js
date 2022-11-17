@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container, SubmitButton } from './ContactForm.styled';
 import { getContacts } from 'redux/selectors';
 import { checkContactsName } from 'utils';
-import { addContact } from 'redux/actions';
+// import { addContact } from 'redux/actions';
+import { addContact } from '../../redux/contactsSlice';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');

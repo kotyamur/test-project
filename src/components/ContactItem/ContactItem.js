@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/actions';
+// import { deleteContact } from 'redux/actions';
+import { deleteContact } from '../../redux/contactsSlice';
 import { Container, DeleteButton } from './ContactItem.styled';
 
 export const ContactItem = ({ name, number, id }) => {
@@ -9,7 +10,7 @@ export const ContactItem = ({ name, number, id }) => {
   const handleDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
   };
-  
+
   return (
     <Container>
       <p>
