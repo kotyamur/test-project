@@ -1,4 +1,10 @@
-import { combineReducers } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
+import {
+  addContact,
+  deleteContact,
+  setContactFromLocalStorage,
+  setFilter,
+} from './actions';
 
 const initialContactsState = [
   //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -7,35 +13,48 @@ const initialContactsState = [
   //   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-const contactsReducer = (state = initialContactsState, action) => {
-  switch (action.type) {
-    case 'contacts/addContact': {
-      return [...state, action.payload];
-    }
-    case 'contacts/deleteContact': {
-      return state.filter(contact => contact.id !== action.payload);
-    }
-    case 'contacts/setContactFromLocalStorage': {
-      return [...state, ...action.payload];
-    }
-    default:
-      return state;
-  }
-};
+export const contactsReducer = createReducer(initialContactsState, {
+  [addContact]: (state, action) => {
+    return [...state, action.payload];
+  },
+  [deleteContact]: (state, action) => {
+    return state.filter(contact => contact.id !== action.payload);
+  },
+  [setContactFromLocalStorage]: (state, action) => {
+    return [...state, ...action.payload];
+  },
+});
+
+// export const contactsReducer = (state = initialContactsState, action) => {
+//   switch (action.type) {
+//     case addContact.type: {
+//       return [...state, action.payload];
+//     }
+//     case deleteContact.type: {
+//       return state.filter(contact => contact.id !== action.payload);
+//     }
+//     case setContactFromLocalStorage.type: {
+//       return [...state, ...action.payload];
+//     }
+//     default:
+//       return state;
+//   }
+// };
 
 const initialFilterState = '';
 
-const filterReducer = (state = initialFilterState, action) => {
-  switch (action.type) {
-    case 'filter/setFilter': {
-      return action.payload;
-    }
-    default:
-      return state;
-  }
-};
-
-export const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  filter: filterReducer,
+export const filterReducer = createReducer(initialFilterState, {
+  [setFilter]: (state, action) => {
+    return action.payload;
+  },
 });
+
+// export const filterReducer = (state = initialFilterState, action) => {
+//   switch (action.type) {
+//     case setFilter.type: {
+//       return action.payload;
+//     }
+//     default:
+//       return state;
+//   }
+// };
