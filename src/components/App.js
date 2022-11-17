@@ -1,30 +1,29 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList ';
 import { Container, Title, SecondTitle } from './App.styled';
-import { getDataFromLocalStorage, setDataToLocalStorage } from '../utils';
+// import { getDataFromLocalStorage, setDataToLocalStorage } from '../utils';
 import { getContacts } from 'redux/selectors';
 // import { setContactFromLocalStorage } from 'redux/actions';
-import { setContactFromLocalStorage } from '../redux/contactsSlice';
+// import { setContactFromLocalStorage } from '../redux/contactsSlice';
 
 export const App = () => {
   const contacts = useSelector(getContacts);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const savedContacts = getDataFromLocalStorage();
-    // if (savedContacts.length === 0) {
-    //   return;
-    // }
-    dispatch(setContactFromLocalStorage(savedContacts));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const savedContacts = getDataFromLocalStorage();
+  //   // if (savedContacts.length === 0) {
+  //   //   return;
+  //   // }
+  //   dispatch(setContactFromLocalStorage(savedContacts));
+  // }, [dispatch]);
 
-  useEffect(() => {
-    setDataToLocalStorage(contacts);
-  }, [contacts]);
+  // useEffect(() => {
+  //   setDataToLocalStorage(contacts);
+  // }, [contacts]);
 
   return (
     <Container>
