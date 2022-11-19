@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container, SubmitButton } from './ContactForm.styled';
 import { getContacts } from 'redux/selectors';
 import { checkContactsName } from 'utils';
-// import { addContact } from 'redux/actions';
 import { addContact } from '../../redux/contactsSlice';
 
 export const ContactForm = () => {
@@ -14,19 +13,8 @@ export const ContactForm = () => {
 
   const dispatch = useDispatch();
 
-  const changeInput = e => {
-    const { name, value } = e.currentTarget;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        break;
-    }
-  };
+  const handleChangeName = e => setName(e.currentTarget.value);
+  const handleChangeNumber = e => setNumber(e.currentTarget.value);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -55,7 +43,7 @@ export const ContactForm = () => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           value={name}
-          onChange={changeInput}
+          onChange={handleChangeName}
         />
       </label>
       <label>
@@ -67,7 +55,7 @@ export const ContactForm = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           value={number}
-          onChange={changeInput}
+          onChange={handleChangeNumber}
         />
       </label>
       <SubmitButton type="submit">Add contact</SubmitButton>
