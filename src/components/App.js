@@ -13,7 +13,7 @@ export const App = () => {
   const contacts = useSelector(getContacts);
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
-  console.log(contacts);
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
@@ -32,7 +32,9 @@ export const App = () => {
           <ContactList />
         </>
       )}
-      {contacts.length === 0 && <p>There is no contacts</p>}
+      {!isLoading && !error && contacts.length === 0 && (
+        <p>There is no contacts</p>
+      )}
     </Container>
   );
 };
