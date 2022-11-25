@@ -1,12 +1,22 @@
-import { useSelector } from 'react-redux';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList ';
 import { Container, Title, SecondTitle } from './App.styled';
-import { getContacts } from 'redux/selectors';
+
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from '../redux/operations';
+import { getContacts, getError, getIsLoading } from 'redux/selectors';
 
 export const App = () => {
+  const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
+  console.log(contacts);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <Container>
@@ -14,6 +24,8 @@ export const App = () => {
       <ContactForm />
 
       <SecondTitle>Contacts</SecondTitle>
+      {isLoading && <p>Loading tasks...</p>}
+      {error && <p>{error}</p>}
       {contacts.length > 0 && (
         <>
           <Filter />
