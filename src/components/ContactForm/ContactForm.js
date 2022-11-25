@@ -7,14 +7,14 @@ import { addContact } from '../../redux/operations';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const contacts = useSelector(getContacts);
 
   const dispatch = useDispatch();
 
   const handleChangeName = e => setName(e.currentTarget.value);
-  const handleChangeNumber = e => setNumber(e.currentTarget.value);
+  const handleChangeNumber = e => setPhone(e.currentTarget.value);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -23,13 +23,13 @@ export const ContactForm = () => {
       alert(`${name} is already in contacts.`);
       return;
     }
-    dispatch(addContact({ name, number }));
+    dispatch(addContact({ name, phone }));
     reset();
   };
 
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -54,7 +54,7 @@ export const ContactForm = () => {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={number}
+          value={phone}
           onChange={handleChangeNumber}
         />
       </label>
