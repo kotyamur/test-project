@@ -5,15 +5,20 @@ export const Container = styled.form`
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  width: 350px;
-  padding: ${p => p.theme.space[4]}px;
-  margin-bottom: ${p => p.theme.space[5]}px;
+  max-width: 350px;
+  padding: ${p => p.theme.space[5]}px;
+  margin-bottom: ${p => p.theme.space[4]}px;
   border: ${p => p.theme.borders.normal};
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeights.bold};
   label {
     display: grid;
     grid-template-columns: 0.7fr 1fr;
+    width: 100%;
+  }
+  input {
+    max-width: 250px;
+    min-width: 150px;
   }
 `;
 

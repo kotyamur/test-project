@@ -5,8 +5,7 @@ export const Container = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  width: 400px;
-  padding: ${p => p.theme.space[3]}px;
-  margin-bottom: ${p => p.theme.space[5]}px;
+  max-width: 450px;
+  padding-left: ${p => p.theme.space[4]}px;
   font-size: ${p => p.theme.fontSizes.m};
 `;
