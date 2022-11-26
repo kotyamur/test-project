@@ -26,7 +26,7 @@ export const App = () => {
       <SecondTitle>Contacts</SecondTitle>
       {isLoading && <p>Loading tasks...</p>}
       {error && <p>{error}</p>}
-      {contacts.length > 0 && (
+      {contacts.length > 0 && !error && (
         <>
           <Filter />
           <ContactList />

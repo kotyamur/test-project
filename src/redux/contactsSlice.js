@@ -1,8 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
-// import { nanoid } from 'nanoid';
 
-// const initialContactsState = [];
+const fetchContactsSuccessReducer = (state, action) => {
+  state.items = action.payload;
+};
+
+const addContactsSuccessReducer = (state, action) => {
+  state.items.push(action.payload);
+};
+
+const deleteContactsSuccessReducer = (state, action) => {
+  const index = state.items.findIndex(task => task.id === action.payload.id);
+  state.items.splice(index, 1);
+};
+
+const pendingReducer = state => {
+  state.isLoading = true;
+};
+
+const rejectedReducer = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
+const fulfilledReducer = state => {
+  state.isLoading = false;
+  state.error = null;
+};
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -11,65 +35,17 @@ const contactsSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  reducers: {
-    // addContact: {
-    //   reducer(state, action) {
-    //     return [...state, action.payload];
-    //   },
-    //   prepare(name, number) {
-    //     return {
-    //       payload: {
-    //         id: nanoid(),
-    //         name,
-    //         number,
-    //       },
-    //     };
-    //   },
-    // },
-    // deleteContact(state, action) {
-    //   return state.filter(contact => contact.id !== action.payload);
-    // },
-  },
-  extraReducers: {
-    [fetchContacts.pending](state) {
-      state.isLoading = true;
-    },
-    [fetchContacts.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.items = action.payload;
-    },
-    [fetchContacts.rejected](state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-    [addContact.pending](state) {
-      state.isLoading = true;
-    },
-    [addContact.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.items.push(action.payload);
-    },
-    [addContact.rejected](state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-    [deleteContact.pending](state) {
-      state.isLoading = true;
-    },
-    [deleteContact.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      const index = state.items.findIndex(
-        task => task.id === action.payload.id
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.fulfilled, fetchContactsSuccessReducer)
+      .addCase(addContact.fulfilled, addContactsSuccessReducer)
+      .addCase(deleteContact.fulfilled, deleteContactsSuccessReducer)
+      .addMatcher(action => action.type.endsWith('/pending'), pendingReducer)
+      .addMatcher(action => action.type.endsWith('/rejected'), rejectedReducer)
+      .addMatcher(
+        action => action.type.endsWith('/fulfilled'),
+        fulfilledReducer
       );
-      state.items.splice(index, 1);
-    },
-    [deleteContact.rejected](state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
   },
 });
 
