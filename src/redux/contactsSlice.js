@@ -1,9 +1,10 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+// import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
 
-const extraActions = [fetchContacts, addContact, deleteContact];
+// const extraActions = [fetchContacts, addContact, deleteContact];
 
-const getActions = type => extraActions.map(action => action[type]);
+// const getActions = type => extraActions.map(action => action[type]);
 
 const fetchContactsSuccessReducer = (state, action) => {
   state.items = action.payload;
@@ -44,9 +45,15 @@ const contactsSlice = createSlice({
       .addCase(fetchContacts.fulfilled, fetchContactsSuccessReducer)
       .addCase(addContact.fulfilled, addContactsSuccessReducer)
       .addCase(deleteContact.fulfilled, deleteContactsSuccessReducer)
-      .addMatcher(isAnyOf(...getActions('pending')), pendingReducer)
-      .addMatcher(isAnyOf(...getActions('rejected')), rejectedReducer)
-      .addMatcher(isAnyOf(...getActions('fulfilled')), fulfilledReducer);
+      .addMatcher(action => action.type.endsWith('/pending'), pendingReducer)
+      .addMatcher(action => action.type.endsWith('/rejected'), rejectedReducer)
+      .addMatcher(
+        action => action.type.endsWith('/fulfilled'),
+        fulfilledReducer
+      );
+    // .addMatcher(isAnyOf(...getActions('pending')), pendingReducer)
+    // .addMatcher(isAnyOf(...getActions('rejected')), rejectedReducer)
+    // .addMatcher(isAnyOf(...getActions('fulfilled')), fulfilledReducer);
   },
 });
 
