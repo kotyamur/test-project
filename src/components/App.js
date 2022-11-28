@@ -3,7 +3,7 @@ import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList ';
 import { Container, Title, SecondTitle } from './App.styled';
 import { Loader } from './Loader/Loader';
-
+import { Error } from './Error/Error';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from '../redux/operations';
@@ -25,16 +25,15 @@ export const App = () => {
       <ContactForm />
 
       <SecondTitle>Contacts</SecondTitle>
-      {error && <p>{error}</p>}
-      {contacts.length > 0 && !error && (
+
+      {error && <Error>{error}</Error>}
+      {contacts.length > 0 && (
         <>
           <Filter />
           <ContactList />
         </>
       )}
-      {!isLoading && !error && contacts.length === 0 && (
-        <p>There is no contacts</p>
-      )}
+      {!isLoading && contacts.length === 0 && <p>There is no contacts</p>}
       <Loader isLoading={isLoading} />
     </Container>
   );
