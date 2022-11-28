@@ -6,6 +6,6 @@ export const Container = styled.ul`
   align-items: flex-start;
   gap: 10px;
   max-width: 450px;
-  padding-left: ${p => p.theme.space[4]}px;
+  padding-left: ${p => p.theme.space[2]}px;
   font-size: ${p => p.theme.fontSizes.m};
 `;
