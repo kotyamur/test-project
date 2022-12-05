@@ -1,4 +1,8 @@
+import { useAuth } from 'hooks/useAuth';
+
 export const UserMenu = () => {
+  const { user } = useAuth();
+
   return (
     <div
       style={{
@@ -10,7 +14,7 @@ export const UserMenu = () => {
           marginRight: '10px',
         }}
       >
-        Welcome, ...
+        Welcome, {user.name}
       </p>
       <button>Logout</button>
     </div>
