@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register } from './authOperations';
+import { logIn, register } from './authOperations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -23,6 +23,11 @@ const authSlice = createSlice({
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoggedIn = false;
+      })
+      .addCase(logIn.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
       });
     // .addCase(fetchContacts.fulfilled, fetchContactsSuccessReducer)
     // .addCase(addContact.fulfilled, addContactsSuccessReducer)
