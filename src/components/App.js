@@ -7,6 +7,7 @@ import { Contacts } from '../pages/Contacts';
 import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
 import { Register } from '../pages/Register';
+import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { SharedLayout } from './SharedLayout';
 
@@ -36,7 +37,12 @@ export const App = () => {
             <RestrictedRoute redirectTo="/contacts" component={<Login />} />
           }
         />
-        <Route path="/contacts" element={<Contacts />} />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<Contacts />} />
+          }
+        />
       </Route>
     </Routes>
   );
