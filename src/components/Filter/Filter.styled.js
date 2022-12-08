@@ -7,4 +7,12 @@ export const Label = styled.label`
   margin-bottom: ${p => p.theme.space[4]}px;
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeights.bold};
+
+  input {
+    border: ${p => p.theme.borders.normal};
+    border-radius: 4px;
+    border-color: #98ff8c;
+    width: 240px;
+    padding: 1px 6px;
+  }
 `;
