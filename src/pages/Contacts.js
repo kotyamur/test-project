@@ -5,11 +5,15 @@ import { Filter } from '../components/Filter/Filter';
 import { ContactList } from '../components/ContactList/ContactList ';
 import { Loader } from '../components/Loader/Loader';
 import { Error } from '../components/Error/Error';
-import { fetchContacts } from '../redux/operations';
-import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
+import { fetchContacts } from '../redux/contacts/operations';
+import {
+  selectContacts,
+  selectError,
+  selectIsLoading,
+} from 'redux/contacts/selectors';
 import { Box } from '@chakra-ui/react';
 
-export const Contacts = () => {
+const Contacts = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
@@ -37,3 +41,5 @@ export const Contacts = () => {
     </Box>
   );
 };
+
+export default Contacts;

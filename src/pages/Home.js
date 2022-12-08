@@ -1,6 +1,6 @@
 import { Box, Heading } from '@chakra-ui/react';
 
-export const Home = () => {
+const Home = () => {
   return (
     <Box as="main" p={14}>
       <Heading
@@ -16,3 +16,5 @@ export const Home = () => {
     </Box>
   );
 };
+
+export default Home;
