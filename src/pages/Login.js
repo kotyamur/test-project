@@ -1,9 +1,10 @@
+import { Box } from '@chakra-ui/react';
 import { LoginForm } from 'components/LoginForm/LoginForm';
 
 export const Login = () => {
   return (
-    <div>
+    <Box as="main" p={8}>
       <LoginForm />
-    </div>
+    </Box>
   );
 };

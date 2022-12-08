@@ -11,9 +11,10 @@ export const AppBar = () => {
     <Flex
       as="header"
       alignItems="center"
-      borderBottom="1px solid #2a363b"
-      padding={4}
+      padding={6}
       mb={4}
+      boxShadow="md"
+      bgGradient="linear(to-b, #98ff8c, #feff64)"
     >
       <Navigation />
       <Spacer />

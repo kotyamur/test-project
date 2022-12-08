@@ -24,7 +24,14 @@ export const LoginForm = () => {
       <Input id="1" type="email" name="email" />
       <FormLabel htmlFor="2">Password</FormLabel>
       <Input id="2" type="password" name="password" />
-      <Button type="submit" variant="solid" mt="15px" p="15px">
+      <Button
+        type="submit"
+        colorScheme="messenger"
+        size="md"
+        variant="solid"
+        mt="15px"
+        p="15px"
+      >
         Log In
       </Button>
     </FormControl>

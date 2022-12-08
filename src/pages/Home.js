@@ -1,22 +1,18 @@
+import { Box, Heading } from '@chakra-ui/react';
+
 export const Home = () => {
   return (
-    <div
-      style={{
-        minHeight: 'calc(100vh - 50px)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <h1
-        style={{
-          fontWeight: 500,
-          fontSize: 48,
-          textAlign: 'center',
-        }}
+    <Box as="main" p={14}>
+      <Heading
+        as="h1"
+        bgGradient="linear(to-l, #98ff8c, #0041ff)"
+        bgClip="text"
+        textAlign="center"
+        size="4xl"
+        p={4}
       >
         Welcome to your Phonebook
-      </h1>
-    </div>
+      </Heading>
+    </Box>
   );
 };

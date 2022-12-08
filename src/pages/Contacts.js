@@ -7,6 +7,7 @@ import { Loader } from '../components/Loader/Loader';
 import { Error } from '../components/Error/Error';
 import { fetchContacts } from '../redux/operations';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
+import { Box } from '@chakra-ui/react';
 
 export const Contacts = () => {
   const dispatch = useDispatch();
@@ -19,8 +20,7 @@ export const Contacts = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <h1>Phonebook</h1>
+    <Box as="main" p={8}>
       <ContactForm />
 
       <h2>Contacts</h2>
@@ -34,6 +34,6 @@ export const Contacts = () => {
       )}
       {!isLoading && contacts.length === 0 && <p>There is no contacts</p>}
       <Loader isLoading={isLoading} />
-    </>
+    </Box>
   );
 };

@@ -30,7 +30,14 @@ export const RegisterForm = () => {
       <FormLabel htmlFor="3">Password</FormLabel>
       <Input id="3" type="password" name="password" />
 
-      <Button type="submit" variant="solid" mt="15px" p="15px">
+      <Button
+        type="submit"
+        colorScheme="messenger"
+        size="md"
+        variant="solid"
+        mt="15px"
+        p="15px"
+      >
         Sign Up
       </Button>
     </FormControl>

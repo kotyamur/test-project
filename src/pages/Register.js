@@ -1,9 +1,10 @@
+import { Box } from '@chakra-ui/react';
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 
 export const Register = () => {
   return (
-    <div>
+    <Box as="main" p={8}>
       <RegisterForm />
-    </div>
+    </Box>
   );
 };
