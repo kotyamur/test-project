@@ -11,7 +11,7 @@ import {
   selectError,
   selectIsLoading,
 } from 'redux/contacts/selectors';
-import { Box } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,9 @@ const Contacts = () => {
     <Box as="main" p={8}>
       <ContactForm />
 
-      <h2>Contacts</h2>
+      <Heading as="h2" size="lg" mb={4} pl={4}>
+        Contacts
+      </Heading>
 
       {error && <Error>{error}</Error>}
       {contacts.length > 0 && (

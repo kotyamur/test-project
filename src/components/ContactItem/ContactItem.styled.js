@@ -23,8 +23,8 @@ export const DeleteButton = styled.button`
   border-radius: ${p => p.theme.radii.sm};
 
   :hover {
-    background-color: ${p => p.theme.colors.green};
+    background-color: #0041ff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    scale: 1.1;
+    /* scale: 1.1; */
   }
 `;

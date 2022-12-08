@@ -1,5 +1,5 @@
-import { Text } from './Error.styled';
+import { ErrorText } from './Error.styled';
 
 export const Error = ({ children }) => {
-  return <Text>{children}</Text>;
+  return <ErrorText>{children}</ErrorText>;
 };
