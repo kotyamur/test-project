@@ -21,14 +21,14 @@ export const RegisterForm = () => {
 
   return (
     <FormControl as="form" w="450px" onSubmit={handleSubmit} autoComplete="off">
-      <FormLabel htmlFor="1">Username</FormLabel>
-      <Input id="1" type="text" name="name" />
+      <FormLabel htmlFor="name">Username</FormLabel>
+      <Input id="name" type="text" name="name" mb={3} />
 
-      <FormLabel htmlFor="2">Email</FormLabel>
-      <Input id="2" type="email" name="email" />
+      <FormLabel htmlFor="email">Email</FormLabel>
+      <Input id="email" type="email" name="email" mb={3} />
 
-      <FormLabel htmlFor="3">Password</FormLabel>
-      <Input id="3" type="password" name="password" />
+      <FormLabel htmlFor="password">Password</FormLabel>
+      <Input id="password" type="password" name="password" mb={3} />
 
       <Button
         type="submit"

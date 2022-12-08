@@ -20,10 +20,10 @@ export const LoginForm = () => {
 
   return (
     <FormControl as="form" w="450px" onSubmit={handleSubmit} autoComplete="off">
-      <FormLabel htmlFor="1">Email</FormLabel>
-      <Input id="1" type="email" name="email" />
-      <FormLabel htmlFor="2">Password</FormLabel>
-      <Input id="2" type="password" name="password" />
+      <FormLabel htmlFor="email">Email</FormLabel>
+      <Input id="email" type="email" name="email" mb={3} />
+      <FormLabel htmlFor="password">Password</FormLabel>
+      <Input id="password" type="password" name="password" mb={3} />
       <Button
         type="submit"
         colorScheme="messenger"
