@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import { AppBar } from './AppBar/AppBar';
-import { Container } from './SharedLayout.styled';
+import { Box } from '@chakra-ui/react';
 
 export const SharedLayout = () => {
   return (
-    <Container>
+    <Box p={5} maxW="960px" mx="auto">
       <AppBar />
       <Outlet />
-    </Container>
+    </Box>
   );
 };

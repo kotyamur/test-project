@@ -1,6 +1,7 @@
 import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/user/authOperations';
+import { Flex } from '@chakra-ui/react';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -9,19 +10,9 @@ export const UserMenu = () => {
   const handleLogOut = () => dispatch(logOut());
 
   return (
-    <div
-      style={{
-        display: 'flex',
-      }}
-    >
-      <p
-        style={{
-          marginRight: '10px',
-        }}
-      >
-        Welcome, {user.name}
-      </p>
+    <Flex gap={4}>
+      <p>Welcome, {user.name}</p>
       <button onClick={handleLogOut}>Logout</button>
-    </div>
+    </Flex>
   );
 };
