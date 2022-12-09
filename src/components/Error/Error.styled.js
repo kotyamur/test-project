@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const ErrorText = styled.p`
-  margin-bottom: 15px;
-  font-size: 20px;
-  padding-left: 16px;
-  color: red;
+  margin-bottom: ${p => p.theme.space[4]}px;
+  font-size: ${p => p.theme.fontSizes.m};
+  padding-left: ${p => p.theme.space[3]}px;
+  color: ${p => p.theme.colors.red};
 `;

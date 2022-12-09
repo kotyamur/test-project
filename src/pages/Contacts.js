@@ -4,14 +4,14 @@ import { ContactForm } from '../components/ContactForm/ContactForm';
 import { Filter } from '../components/Filter/Filter';
 import { ContactList } from '../components/ContactList/ContactList ';
 import { Loader } from '../components/Loader/Loader';
-import { Error } from '../components/Error/Error';
+import { ErrorMessage } from '../components/Error/Error';
 import { fetchContacts } from '../redux/contacts/operations';
 import {
   selectContacts,
   selectError,
   selectIsLoading,
 } from 'redux/contacts/selectors';
-import { Box, Heading } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -31,14 +31,18 @@ const Contacts = () => {
         Contacts
       </Heading>
 
-      {error && <Error>{error}</Error>}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       {contacts.length > 0 && (
         <>
           <Filter />
           <ContactList />
         </>
       )}
-      {!isLoading && contacts.length === 0 && <p>There is no contacts</p>}
+      {!isLoading && contacts.length === 0 && (
+        <Text pl={3} fontSize="lg">
+          There is no contacts
+        </Text>
+      )}
       <Loader isLoading={isLoading} />
     </Box>
   );
