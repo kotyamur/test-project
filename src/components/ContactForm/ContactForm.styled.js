@@ -23,8 +23,13 @@ export const Container = styled.form`
     min-width: 150px;
     border-color: #98ff8c;
     border-radius: 4px;
-    border-width: 2px;
+    border-width: 1px;
     padding: 2px 6px;
+    outline: none;
+    :focus-visible,
+    :focus {
+      border-color: #0041ff;
+    }
   }
 `;
 

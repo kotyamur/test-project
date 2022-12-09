@@ -14,5 +14,10 @@ export const Label = styled.label`
     border-color: #98ff8c;
     width: 240px;
     padding: 1px 6px;
+    outline: none;
+    :focus-visible,
+    :focus {
+      border-color: #0041ff;
+    }
   }
 `;

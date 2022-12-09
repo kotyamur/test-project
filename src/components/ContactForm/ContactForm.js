@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, SubmitButton } from './ContactForm.styled';
+import { Container } from './ContactForm.styled';
 import { selectContacts } from 'redux/contacts/selectors';
 import { checkContactsName } from 'utils';
 import { addContact } from '../../redux/contacts/operations';
+import { Button } from '@chakra-ui/react';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -58,7 +59,9 @@ export const ContactForm = () => {
           onChange={handleChangeNumber}
         />
       </label>
-      <SubmitButton type="submit">Add contact</SubmitButton>
+      <Button colorScheme="messenger" size="md" variant="solid" type="submit">
+        Add contact
+      </Button>
     </Container>
   );
 };
