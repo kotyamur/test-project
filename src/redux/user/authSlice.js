@@ -45,15 +45,6 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       });
-    // .addCase(fetchContacts.fulfilled, fetchContactsSuccessReducer)
-    // .addCase(addContact.fulfilled, addContactsSuccessReducer)
-    // .addCase(deleteContact.fulfilled, deleteContactsSuccessReducer)
-    // .addMatcher(action => action.type.endsWith('/pending'), pendingReducer)
-    // .addMatcher(action => action.type.endsWith('/rejected'), rejectedReducer)
-    // .addMatcher(
-    //   action => action.type.endsWith('/fulfilled'),
-    //   fulfilledReducer
-    // );
   },
 });
 

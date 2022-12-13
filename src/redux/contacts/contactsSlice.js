@@ -1,23 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { logOut } from 'redux/user/authOperations';
 import { fetchContacts, addContact, deleteContact } from './operations';
-
-// const extraActions = [fetchContacts, addContact, deleteContact];
-
-// const getActions = type => extraActions.map(action => action[type]);
-
-const fetchContactsSuccessReducer = (state, action) => {
-  state.items = action.payload;
-};
-
-const addContactsSuccessReducer = (state, action) => {
-  state.items.push(action.payload);
-};
-
-const deleteContactsSuccessReducer = (state, action) => {
-  const index = state.items.findIndex(task => task.id === action.payload.id);
-  state.items.splice(index, 1);
-};
 
 const pendingReducer = state => {
   state.isLoading = true;
@@ -42,18 +25,29 @@ const contactsSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchContacts.fulfilled, fetchContactsSuccessReducer)
-      .addCase(addContact.fulfilled, addContactsSuccessReducer)
-      .addCase(deleteContact.fulfilled, deleteContactsSuccessReducer)
+      .addCase(fetchContacts.fulfilled, (state, action) => {
+        state.items = action.payload;
+      })
+      .addCase(addContact.fulfilled, (state, action) => {
+        state.items.push(action.payload);
+      })
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        const index = state.items.findIndex(
+          task => task.id === action.payload.id
+        );
+        state.items.splice(index, 1);
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.items = [];
+        state.error = null;
+        state.isLoading = false;
+      })
       .addMatcher(action => action.type.endsWith('/pending'), pendingReducer)
       .addMatcher(action => action.type.endsWith('/rejected'), rejectedReducer)
       .addMatcher(
         action => action.type.endsWith('/fulfilled'),
         fulfilledReducer
       );
-    // .addMatcher(isAnyOf(...getActions('pending')), pendingReducer)
-    // .addMatcher(isAnyOf(...getActions('rejected')), rejectedReducer)
-    // .addMatcher(isAnyOf(...getActions('fulfilled')), fulfilledReducer);
   },
 });
 
