@@ -5,6 +5,7 @@ import { selectContacts } from 'redux/contacts/selectors';
 import { checkContactsName } from 'utils';
 import { addContact } from '../../redux/contacts/operations';
 import { Button } from '@chakra-ui/react';
+import toast, { Toaster } from 'react-hot-toast';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -21,7 +22,7 @@ export const ContactForm = () => {
     e.preventDefault();
 
     if (checkContactsName(contacts, name)) {
-      alert(`${name} is already in contacts.`);
+      toast.error(`${name} is already in contacts.`);
       return;
     }
     dispatch(addContact({ name, number }));
@@ -62,6 +63,7 @@ export const ContactForm = () => {
       <Button colorScheme="messenger" size="md" variant="solid" type="submit">
         Add contact
       </Button>
+      <Toaster />
     </Container>
   );
 };
