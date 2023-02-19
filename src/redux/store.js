@@ -14,6 +14,9 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import { userBalanceReducer } from './balans/balanceSlice';
+
+
 const middleware = getDefaultMiddleware =>
   getDefaultMiddleware({
     serializableCheck: {
@@ -27,7 +30,12 @@ const persistConfig = {
   whitelist: ['token'],
 };
 
+
+
+
+
 const reducers = combineReducers({
+  user: userBalanceReducer,
   contacts: contactsReducer,
   filter: filterReducer,
   auth: persistReducer(persistConfig, authReducer),

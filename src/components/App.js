@@ -1,50 +1,60 @@
-import { useAuth } from 'hooks/useAuth';
-import { useEffect, lazy } from 'react';
-import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import { refreshUser } from 'redux/user/authOperations';
-import { PrivateRoute } from './PrivateRoute';
-import { RestrictedRoute } from './RestrictedRoute';
-import { SharedLayout } from './SharedLayout';
+// import { useAuth } from 'hooks/useAuth';
+// import { useEffect, lazy } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { Route, Routes } from 'react-router-dom';
+// import { refreshUser } from 'redux/user/authOperations';
+// import { PrivateRoute } from './PrivateRoute';
+// import { RestrictedRoute } from './RestrictedRoute';
+// import { SharedLayout } from './SharedLayout';
 
-const Home = lazy(() => import('../pages/Home'));
-const Register = lazy(() => import('../pages/Register'));
-const Login = lazy(() => import('../pages/Login'));
-const Contacts = lazy(() => import('../pages/Contacts'));
+import { Balans } from "./Balans/Balans"
 
-export const App = () => {
-  const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+// const Home = lazy(() => import('../pages/Home'));
+// const Register = lazy(() => import('../pages/Register'));
+// const Login = lazy(() => import('../pages/Login'));
+// const Contacts = lazy(() => import('../pages/Contacts'));
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+// export const App = () => {
+//   const dispatch = useDispatch();
+//   const { isRefreshing } = useAuth();
 
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/contacts" component={<Login />} />
-          }
-        />
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute redirectTo="/login" component={<Contacts />} />
-          }
-        />
-      </Route>
-    </Routes>
+//   useEffect(() => {
+//     dispatch(refreshUser());
+//   }, [dispatch]);
+
+//   return isRefreshing ? (
+//     <b>Refreshing user...</b>
+//   ) : (
+//     <Routes>
+//       <Route path="/" element={<SharedLayout />}>
+//         <Route index element={<Home />} />
+//         <Route
+//           path="/register"
+//           element={
+//             <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+//           }
+//         />
+//         <Route
+//           path="/login"
+//           element={
+//             <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+//           }
+//         />
+//         <Route
+//           path="/contacts"
+//           element={
+//             <PrivateRoute redirectTo="/login" component={<Contacts />} />
+//           }
+//         />
+//       </Route>
+//     </Routes>
+//   );
+// };
+import { Box } from '@chakra-ui/react';
+export const App = () => { 
+  return (
+    <Box as="main" p={8}>
+      <Balans />
+    </Box>
   );
-};
+}
